@@ -96,13 +96,11 @@ $(document).ready(function () {
     });
 
     function startTimer(seconds) {
-        // e.preventDefault();
 
         if ($('input[type=button]#watch').val() == 'Start') {
 
             $('input[type=button]#watch').val('Stop');
 
-            // timerSeconds = $('input[type=text]#watch').val();
             timerSeconds = seconds;
             timerColor = getColor(timerSeconds);
 
@@ -125,7 +123,6 @@ $(document).ready(function () {
         }
     }
 
-    // $('input[type=button]#watch').click();
     const start = document.getElementById('watch');
     start.addEventListener('click', () => {
         console.log("start");
