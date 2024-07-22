@@ -4,6 +4,8 @@ var timerFinish;
 var timerSeconds;
 var timerColor;
 
+// let timerSeconds = 5;
+
 function drawTimer(percent) {
 
     $('div.timer').html('<div class="percent"></div><div id="slice"' + 
@@ -83,6 +85,7 @@ $(document).ready(function () {
         drawTimer($('input[type=text]#percent').val());
 
     });
+    
 
     $('input[type=button]#size').click(function (e) {
 
@@ -92,15 +95,15 @@ $(document).ready(function () {
 
     });
 
-    $('input[type=button]#watch').click(function (e) {
-
+    function startTimer(e, seconds) {
         e.preventDefault();
 
         if ($('input[type=button]#watch').val() == 'Start') {
 
             $('input[type=button]#watch').val('Stop');
 
-            timerSeconds = $('input[type=text]#watch').val();
+            // timerSeconds = $('input[type=text]#watch').val();
+            timerSeconds = seconds;
             timerColor = getColor(timerSeconds);
 
             $('.timer').css('border-color', timerColor);
@@ -120,9 +123,14 @@ $(document).ready(function () {
             clearInterval(timer);
 
         }
+    }
 
+    // $('input[type=button]#watch').click();
+    const start = document.getElementById('watch');
+    start.addEventListener('click', (e) => {
+        console.log("start");
+        startTimer(e, "1");
     });
 
-    $('input[type=button]#watch').click();
-
 });
+
