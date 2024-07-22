@@ -95,8 +95,8 @@ $(document).ready(function () {
 
     });
 
-    function startTimer(e, seconds) {
-        e.preventDefault();
+    function startTimer(seconds) {
+        // e.preventDefault();
 
         if ($('input[type=button]#watch').val() == 'Start') {
 
@@ -127,9 +127,9 @@ $(document).ready(function () {
 
     // $('input[type=button]#watch').click();
     const start = document.getElementById('watch');
-    start.addEventListener('click', (e) => {
+    start.addEventListener('click', () => {
         console.log("start");
-        startTimer(e, "1");
+        startTimer("1");
     });
 
 });
