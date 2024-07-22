@@ -125,7 +125,6 @@ $(document).ready(function () {
 
     const start = document.getElementById('watch');
     start.addEventListener('click', () => {
-        console.log("start");
         startTimer("1");
     });
 
