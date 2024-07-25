@@ -3,15 +3,14 @@ var timerCurrent;
 var timerFinish;
 var timerSeconds;
 var timerColor;
+var timings = ["4","60","30"]
+var timingIndx = 0;
 
-// let timerSeconds = 5;
 
 function drawTimer(percent) {
 
     $('div.timer').html('<div class="percent"></div><div id="slice"' + 
         (percent > 50 ? ' class="gt50"' : '') + '><div class="pie"></div>' + (percent > 50 ? '<div class="pie fill"></div>' : '') + '</div>');
-
-    /*var deg = 360 / 100 * percent;*/
 
     var deg = 360 * (percent / 100);
 
@@ -47,13 +46,13 @@ function stopWatch() {
 
         clearInterval(timer);
 
-        $('input[type=button]#watch').val('Start');
-
-        alert('Finished counting down from ' + timerSeconds);
-
+        console.log('timer has finished');
+        timingIndx++;
+        if(timingIndx < timings.length){
+            startTimer(timings[timingIndx]);
+        }
     } else {
 
-        //var percent = 100 - ((seconds / timerSeconds) * 100);
 
         var percent = (seconds / timerSeconds) * 100;
 
@@ -77,30 +76,40 @@ function getColor(seconds) {
 }
 
 $(document).ready(function () {
+    const velProg = document.querySelectorAll('.velProg');
 
-    $('input[type=button]#percent').click(function (e) {
+    function velToIndex(velocity){
+        switch(true){
+            case (velocity < 5):
+            return 0;
+            break;
+            case (velocity < 10):
+            return 1;
+            break; 
+            case (velocity < 15):
+            return 2;
+            break;
+            case (velocity < 20):
+            return 3;
+            break;
+            case (velocity < 25):
+            return 4;
+            break;
+            case (velocity < 30):
+            return 5;
+            break;
+            case (velocity < 35):
+            return 6;
+            break;
+            case (velocity >= 45):
+            return 7
+            break;
 
-        e.preventDefault();
+        }
 
-        drawTimer($('input[type=text]#percent').val());
-
-    });
-    
-
-    $('input[type=button]#size').click(function (e) {
-
-        e.preventDefault();
-
-        $('.timer').css('font-size', $('input[type=text]#size').val() + 'px');
-
-    });
-
-    function startTimer(seconds) {
-
-        if ($('input[type=button]#watch').val() == 'Start') {
-
-            $('input[type=button]#watch').val('Stop');
-
+        
+    }
+    startTimer = function (seconds) {
             timerSeconds = seconds;
             timerColor = getColor(timerSeconds);
 
@@ -112,21 +121,14 @@ $(document).ready(function () {
 
             timerFinish = new Date().getTime() + (timerSeconds * 1000);
 
-            timer = setInterval('stopWatch()', 50);
-
-        } else {
-
-            $('input[type=button]#watch').val('Start');
-
-            clearInterval(timer);
-
-        }
+            timer = setInterval(stopWatch, 50);
     }
 
-    const start = document.getElementById('watch');
-    start.addEventListener('click', () => {
-        startTimer("1");
-    });
-
+    function start(){
+        
+    }
+    
+    // start();
+    startTimer(timings[timingIndx]);
 });
 

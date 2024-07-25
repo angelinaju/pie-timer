@@ -7,11 +7,23 @@
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<p><input type="button" id="watch" value="Start" /> count down from <input type="text" id="watch" size="2" value="10" /> seconds</p>
+  <div class="window">
+    <div class="goal">
+      <div class="goalText">Goal</div>
+    </div>
+    <div class="velProgContainer">
+      <div class="velProg" id="startSeg"></div>
+      <div class="velProg"></div>
+      <div class="velProg"></div>
+      <div class="velProg"></div>
+      <div class="velProg"></div>
+      <div class="velProg"></div>
+      <div class="velProg"></div>
+      <div class="velProg" id="endSeg"></div>
+    </div>
+    <div class="timer fill"></div>
 
-        <div class="timer fill"></div>
-<!-- partial -->
+  </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script><script  src="./script.js"></script>
 
 </body>
